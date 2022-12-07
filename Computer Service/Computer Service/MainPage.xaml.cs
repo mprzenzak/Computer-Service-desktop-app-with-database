@@ -1,85 +1,110 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Data.SqlClient;
 using System.Diagnostics;
-using System.IO;
 using System.Linq;
-using System.Runtime.InteropServices.WindowsRuntime;
-using Windows.Foundation;
-using Windows.Foundation.Collections;
-using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
-using Windows.UI.Xaml.Controls.Primitives;
-using Windows.UI.Xaml.Data;
-using Windows.UI.Xaml.Input;
-using Windows.UI.Xaml.Media;
-using Windows.UI.Xaml.Navigation;
 using Computer_Service.Models;
-
-// The Blank Page item template is documented at https://go.microsoft.com/fwlink/?LinkId=402352&clcid=0x409
+using Computer_Service.Views;
+using Windows.Security.Isolation;
+using System.Text;
 
 namespace Computer_Service
 {
-    /// <summary>
-    /// An empty page that can be used on its own or navigated to within a Frame.
-    /// </summary>
     public sealed partial class MainPage : Page
     {
+        private DataBaseContext dbContext = new DataBaseContext();
+
+        private static string login;
+        private static string password;
         public MainPage()
         {
             this.InitializeComponent();
-            InventoryList.ItemsSource = GetProducts((App.Current as App).ConnectionString);
         }
 
-        // Display all customers
-        public ObservableCollection<Customer> GetProducts(string connectionString)
+        private void LoginButtonClick(object sender, Windows.UI.Xaml.RoutedEventArgs e)
         {
-            const string GetProductsQuery = "SELECT client_id, firstname, lastname, phone, email" +
-                                            " FROM dbo.Klienci";
-            var customers = new ObservableCollection<Customer>();
-            try
+            login = LoginInput.Text;
+            password = PasswordInput.Text;
+
+            var correctPassword = dbContext.Credentials.FirstOrDefault(c => c.login == login);
+            if (correctPassword != null && password == correctPassword.password)
             {
-                //// const string connectionString2 = "SERVER=HP\\MPRZENZAKSQL;Database=Computer_Service_Project; USER ID = AS; PASSWORD = Babkaloj1202";
-                //const string connectionString2 =
-                //    "Server=HP\\MPRZENZAKSQL; Database=ComputerService; Trusted_Connection=True";   
-                
-                const string connectionString2 =
-                    @"Server=HP\MPRZENZAKSQL; Initial Catalog=Computer_Service; Integrated Security=true; USER ID = root; PASSWORD = P@ssw0rd; TrustServerCertificate = true";
-                using (SqlConnection conn = new SqlConnection(connectionString2))
+                if(login.Substring(0, 1) == "K")
                 {
-                    conn.Open();
-                    Console.WriteLine(conn.State.ToString());
-                    if (conn.State == System.Data.ConnectionState.Open)
-                    {
-                        using (SqlCommand cmd = conn.CreateCommand())
-                        {
-                            cmd.CommandText = GetProductsQuery;
-                            using (SqlDataReader reader = cmd.ExecuteReader())
-                            {
-                                while (reader.Read())
-                                {
-                                    var customer = new Customer();
-                                    customer.clientID = reader.GetInt32(0);
-                                    customer.email = reader.GetString(1);
-                                    customer.firstname = reader.GetString(2);
-                                    customer.lastname = reader.GetString(3);
-                                    customer.phone = reader.GetInt32(4);
-                                    customers.Add(customer);
-                                }
-                            }
-                        }
-                    }
+                    Frame.Navigate(typeof(CustomerPanel), dbContext);
+                }
+                else
+                {
+                    Frame.Navigate(typeof(EmployeePanel), dbContext);
+                }
+            }
+            else
+            {
+                IncorrectPasswordLabel.Text = "Niepoprawny login lub hasło!";
+            }
+        }
+
+        private void RegisterButtonClick(object sender, Windows.UI.Xaml.RoutedEventArgs e)
+        {
+            var newFirstname = registerFirstnameInput.Text;
+            var newLastname = registerLastnameInput.Text;
+            var newEmail = registerEmailInput.Text;
+            var newPhoneNumber = Int32.Parse(registerPhoneNumberInput.Text);
+
+            var newCustomer = new Customer()
+            {
+                customer_id = GenerateUserID('K'),
+                firstname = newFirstname,
+                lastname = newLastname,
+                email = newEmail,
+                phone = newPhoneNumber,
+            };
+            dbContext.Customers.Add(newCustomer);
+            dbContext.SaveChanges();
+
+            userAddedInfoLabel.Text = "Konto zostało utworzone";
+        }
+
+        private string GenerateUserID(char userType)
+        {
+            string currentLastID = dbContext.Customers.OrderByDescending(c => c.customer_id).FirstOrDefault().customer_id;
+            int substringLength = 0;
+            for (int charPosition = 1; charPosition <= currentLastID.Length; charPosition++)
+            {
+                if (currentLastID[charPosition] != '0')
+                {
+                    substringLength = charPosition;
+                    break;
                 }
 
-                return customers;
             }
-            catch (Exception eSql)
+            int newIDValue = Int32.Parse(currentLastID.Substring(substringLength));
+            string newIDValueString = (newIDValue + 1).ToString();
+            int n = 6 - newIDValueString.Length;
+            StringBuilder idDigitsString = new StringBuilder();
+            for (int i = 0; i < n; i++)
             {
-                Debug.WriteLine($"Exception: {eSql.Message}");
+                idDigitsString.Append('0');
             }
 
-            return null;
+            idDigitsString.Append(newIDValueString);
+            string newID = userType + idDigitsString.ToString();
+            return newID;
         }
+
+        private void registerPhoneNumberInput_TextChanging(TextBox sender, TextBoxTextChangingEventArgs args)
+        {
+            var previousValue = registerPhoneNumberInput.Text;
+            foreach (Char c in registerPhoneNumberInput.Text)
+            {
+                if (!Char.IsDigit(c))
+                {
+                    registerPhoneNumberInput.Text = previousValue.Remove(previousValue.Length - 1);
+                    return;
+                }
+            }
+        }
+
     }
 }

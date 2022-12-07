@@ -10,50 +10,25 @@
     Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
 
     <Grid Background="{ThemeResource SystemControlAcrylicWindowBrush}">
-        <RelativePanel>
-            <ListView Name="InventoryList"
-                  SelectionMode="Single"
-                  ScrollViewer.VerticalScrollBarVisibility="Auto"
-                  ScrollViewer.IsVerticalRailEnabled="True"
-                  ScrollViewer.VerticalScrollMode="Enabled"
-                  ScrollViewer.HorizontalScrollMode="Enabled"
-                  ScrollViewer.HorizontalScrollBarVisibility="Auto"
-                  ScrollViewer.IsHorizontalRailEnabled="True"
-                  Margin="20">
-                <ListView.HeaderTemplate>
-                    <DataTemplate>
-                        <StackPanel Orientation="Horizontal"  >
-                            <TextBlock Text="ID" Margin="8,0" Width="50" Foreground="DarkRed" />
-                            <TextBlock Text="Product description" Width="300" Foreground="DarkRed" />
-                            <TextBlock Text="Packaging" Width="200" Foreground="DarkRed" />
-                            <TextBlock Text="Price" Width="80" Foreground="DarkRed" />
-                            <TextBlock Text="In stock" Width="80" Foreground="DarkRed" />
-                        </StackPanel>
-                    </DataTemplate>
-                </ListView.HeaderTemplate>
-                <ListView.ItemTemplate>
-                    <DataTemplate x:DataType="models:Customer">
-                        <StackPanel Orientation="Horizontal" >
-                            <TextBlock Name="clientID"
-                                    Text="{x:Bind clientID}"
-                                    Width="50" />
-                            <TextBlock Name="firstname"
-                                    Text="{x:Bind firstname}"
-                                    Width="300" />
-                            <TextBlock Name="lastname"
-                                       Text="{x:Bind lastname}"
-                                       Width="300" />
-                            <TextBlock Name="phone"
-                                       Text="{x:Bind phone}"
-                                       Width="300" />
-                            <TextBlock Name="email"
-                                       Text="{x:Bind email}"
-                                       Width="300" />
-                           
-                        </StackPanel>
-                    </DataTemplate>
-                </ListView.ItemTemplate>
-            </ListView>
-        </RelativePanel>
+        <TextBox x:Name="LoginInput" HorizontalAlignment="Left" Margin="695,586,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Height="35" Width="135"/>
+        <TextBlock HorizontalAlignment="Left" Height="26" Margin="711,561,0,0" TextWrapping="Wrap" Text="Login" VerticalAlignment="Top" Width="105" TextAlignment="Center"/>
+        <TextBox x:Name="PasswordInput" HorizontalAlignment="Left" Margin="694,666,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Height="35" Width="135"/>
+        <TextBlock HorizontalAlignment="Left" Height="26" Margin="710,641,0,0" TextWrapping="Wrap" Text="Hasło" VerticalAlignment="Top" Width="105" TextAlignment="Center"/>
+        <TextBlock x:Name="IncorrectPasswordLabel" HorizontalAlignment="Left" Height="156" Margin="535,381,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="451" TextAlignment="Center" Foreground="Red" FontSize="48"/>
+        <Button Content="Zaloguj się" Margin="700,735,0,0" VerticalAlignment="Top" Height="35" Width="125" Click="LoginButtonClick"/>
+
+        <TextBlock HorizontalAlignment="Left" Height="26" Margin="150,41,0,0" TextWrapping="Wrap" Text="Zarejestruj się" VerticalAlignment="Top" Width="105" TextAlignment="Center"/>
+        <TextBlock HorizontalAlignment="Left" Height="22" Margin="19,368,0,0" TextWrapping="Wrap" Text="Hasło - min 8 długości, znak specjalny, duża i mała litera oraz cyfra" VerticalAlignment="Top" Width="445" TextAlignment="Center"/>
+        <TextBox x:Name="registerPasswordInput" HorizontalAlignment="Left" Margin="165,405,0,0" TextWrapping="Wrap" VerticalAlignment="Top"/>
+        <TextBlock HorizontalAlignment="Left" Height="26" Margin="144,75,0,0" TextWrapping="Wrap" Text="Imię" VerticalAlignment="Top" Width="105" TextAlignment="Center"/>
+        <TextBox x:Name="registerFirstnameInput" HorizontalAlignment="Left" Margin="165,98,0,0" TextWrapping="Wrap" VerticalAlignment="Top"/>
+        <TextBlock HorizontalAlignment="Left" Height="26" Margin="141,146,0,0" TextWrapping="Wrap" Text="Nazwisko" VerticalAlignment="Top" Width="115" TextAlignment="Center"/>
+        <TextBox x:Name="registerLastnameInput" HorizontalAlignment="Left" Margin="165,175,0,0" TextWrapping="Wrap" VerticalAlignment="Top"/>
+        <TextBlock HorizontalAlignment="Left" Height="26" Margin="147,216,0,0" TextWrapping="Wrap" Text="Email" VerticalAlignment="Top" Width="105" TextAlignment="Center" RenderTransformOrigin="0.667,6.308"/>
+        <TextBox x:Name="registerEmailInput" HorizontalAlignment="Left" Margin="165,245,0,0" TextWrapping="Wrap" VerticalAlignment="Top"/>
+        <TextBlock HorizontalAlignment="Left" Height="26" Margin="142,286,0,0" TextWrapping="Wrap" Text="Numer telefonu" VerticalAlignment="Top" Width="105" TextAlignment="Center"/>
+        <TextBox x:Name="registerPhoneNumberInput" HorizontalAlignment="Left" Margin="165,315,0,0" TextWrapping="Wrap" VerticalAlignment="Top" TextChanging="registerPhoneNumberInput_TextChanging"/>
+        <Button Content="Zarejestruj się" Margin="135,460,0,0" VerticalAlignment="Top" Height="35" Width="125" Click="RegisterButtonClick"/>
+        <TextBlock x:Name="userAddedInfoLabel" HorizontalAlignment="Left" Margin="105,511,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Height="25" Width="193"/>
     </Grid>
 </Page>

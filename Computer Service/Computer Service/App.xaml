@@ -2,6 +2,6 @@
     x:Class="Computer_Service.App"
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-    xmlns:local="using:Computer_Service">
-
+    xmlns:local="using:Computer_Service"
+    RequestedTheme="Light">
 </Application>
