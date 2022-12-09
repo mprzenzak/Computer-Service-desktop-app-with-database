@@ -8,6 +8,8 @@ using Computer_Service.Models;
 using Computer_Service.Views;
 using Windows.Security.Isolation;
 using System.Text;
+using System.Text.RegularExpressions;
+using System.Reflection.Metadata.Ecma335;
 
 namespace Computer_Service
 {
@@ -25,12 +27,12 @@ namespace Computer_Service
         private void LoginButtonClick(object sender, Windows.UI.Xaml.RoutedEventArgs e)
         {
             login = LoginInput.Text;
-            password = PasswordInput.Text;
+            password = PasswordInput.Password;
 
             var correctPassword = dbContext.Credentials.FirstOrDefault(c => c.login == login);
             if (correctPassword != null && password == correctPassword.password)
             {
-                if(login.Substring(0, 1) == "K")
+                if (login.Substring(0, 1) == "K")
                 {
                     Frame.Navigate(typeof(CustomerPanel), dbContext);
                 }
@@ -47,23 +49,44 @@ namespace Computer_Service
 
         private void RegisterButtonClick(object sender, Windows.UI.Xaml.RoutedEventArgs e)
         {
-            var newFirstname = registerFirstnameInput.Text;
-            var newLastname = registerLastnameInput.Text;
-            var newEmail = registerEmailInput.Text;
-            var newPhoneNumber = Int32.Parse(registerPhoneNumberInput.Text);
-
-            var newCustomer = new Customer()
+            if (registerPasswordInput.Password == registerPasswordInputRepetition.Password && ValidatePassword(registerPasswordInputRepetition.Password))
             {
-                customer_id = GenerateUserID('K'),
-                firstname = newFirstname,
-                lastname = newLastname,
-                email = newEmail,
-                phone = newPhoneNumber,
-            };
-            dbContext.Customers.Add(newCustomer);
-            dbContext.SaveChanges();
+                var newFirstname = registerFirstnameInput.Text;
+                var newLastname = registerLastnameInput.Text;
+                var newEmail = registerEmailInput.Text;
+                var newPhoneNumber = Int32.Parse(registerPhoneNumberInput.Text);
+                var newCustomerId = GenerateUserID('K');
+                var newPassword = registerPasswordInputRepetition.Password;
 
-            userAddedInfoLabel.Text = "Konto zostało utworzone";
+                var newCustomer = new Customer()
+                {
+                    customer_id = newCustomerId,
+                    firstname = newFirstname,
+                    lastname = newLastname,
+                    email = newEmail,
+                    phone = newPhoneNumber,
+                };
+                dbContext.Customers.Add(newCustomer);
+
+                var newCustomerCredentials = new Credentials()
+                {
+                    login = newCustomerId,
+                    password = newPassword,
+                };
+                dbContext.Credentials.Add(newCustomerCredentials);
+                dbContext.SaveChanges();
+
+                userAddedInfoLabel.Text = "Konto zostało utworzone";
+            }
+            else
+            {
+                userAddedInfoLabel.Text = "Podane hasła nie są jednakowe lub nie spełniają określonych wymogów";
+            }
+        }
+
+        private bool ValidatePassword(string password)
+        {
+            return Regex.IsMatch(password, @"^(?=.*[a-zA-Z])(?=.*[0-9])(?=.{8,}).*$");
         }
 
         private string GenerateUserID(char userType)
@@ -105,6 +128,5 @@ namespace Computer_Service
                 }
             }
         }
-
     }
 }

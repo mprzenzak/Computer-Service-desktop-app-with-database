@@ -12,14 +12,13 @@
     <Grid Background="{ThemeResource SystemControlAcrylicWindowBrush}">
         <TextBox x:Name="LoginInput" HorizontalAlignment="Left" Margin="695,586,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Height="35" Width="135"/>
         <TextBlock HorizontalAlignment="Left" Height="26" Margin="711,561,0,0" TextWrapping="Wrap" Text="Login" VerticalAlignment="Top" Width="105" TextAlignment="Center"/>
-        <TextBox x:Name="PasswordInput" HorizontalAlignment="Left" Margin="694,666,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Height="35" Width="135"/>
+        <PasswordBox x:Name="PasswordInput" HorizontalAlignment="Left" Margin="695,670,0,0" VerticalAlignment="Top" Width="135"/>
         <TextBlock HorizontalAlignment="Left" Height="26" Margin="710,641,0,0" TextWrapping="Wrap" Text="Hasło" VerticalAlignment="Top" Width="105" TextAlignment="Center"/>
         <TextBlock x:Name="IncorrectPasswordLabel" HorizontalAlignment="Left" Height="156" Margin="535,381,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="451" TextAlignment="Center" Foreground="Red" FontSize="48"/>
         <Button Content="Zaloguj się" Margin="700,735,0,0" VerticalAlignment="Top" Height="35" Width="125" Click="LoginButtonClick"/>
 
         <TextBlock HorizontalAlignment="Left" Height="26" Margin="150,41,0,0" TextWrapping="Wrap" Text="Zarejestruj się" VerticalAlignment="Top" Width="105" TextAlignment="Center"/>
-        <TextBlock HorizontalAlignment="Left" Height="22" Margin="19,368,0,0" TextWrapping="Wrap" Text="Hasło - min 8 długości, znak specjalny, duża i mała litera oraz cyfra" VerticalAlignment="Top" Width="445" TextAlignment="Center"/>
-        <TextBox x:Name="registerPasswordInput" HorizontalAlignment="Left" Margin="165,405,0,0" TextWrapping="Wrap" VerticalAlignment="Top"/>
+        <TextBlock HorizontalAlignment="Left" Height="22" Margin="-1,370,0,0" TextWrapping="Wrap" Text="Hasło - min 8 długości, znak specjalny, duża i mała litera oraz cyfra" VerticalAlignment="Top" Width="445" TextAlignment="Center"/>
         <TextBlock HorizontalAlignment="Left" Height="26" Margin="144,75,0,0" TextWrapping="Wrap" Text="Imię" VerticalAlignment="Top" Width="105" TextAlignment="Center"/>
         <TextBox x:Name="registerFirstnameInput" HorizontalAlignment="Left" Margin="165,98,0,0" TextWrapping="Wrap" VerticalAlignment="Top"/>
         <TextBlock HorizontalAlignment="Left" Height="26" Margin="141,146,0,0" TextWrapping="Wrap" Text="Nazwisko" VerticalAlignment="Top" Width="115" TextAlignment="Center"/>
@@ -28,7 +27,10 @@
         <TextBox x:Name="registerEmailInput" HorizontalAlignment="Left" Margin="165,245,0,0" TextWrapping="Wrap" VerticalAlignment="Top"/>
         <TextBlock HorizontalAlignment="Left" Height="26" Margin="142,286,0,0" TextWrapping="Wrap" Text="Numer telefonu" VerticalAlignment="Top" Width="105" TextAlignment="Center"/>
         <TextBox x:Name="registerPhoneNumberInput" HorizontalAlignment="Left" Margin="165,315,0,0" TextWrapping="Wrap" VerticalAlignment="Top" TextChanging="registerPhoneNumberInput_TextChanging"/>
-        <Button Content="Zarejestruj się" Margin="135,460,0,0" VerticalAlignment="Top" Height="35" Width="125" Click="RegisterButtonClick"/>
+        <Button Content="Zarejestruj się" Margin="130,570,0,0" VerticalAlignment="Top" Height="35" Width="125" Click="RegisterButtonClick"/>
         <TextBlock x:Name="userAddedInfoLabel" HorizontalAlignment="Left" Margin="105,511,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Height="25" Width="193"/>
+        <PasswordBox x:Name="registerPasswordInput" HorizontalAlignment="Left" Margin="161,405,0,0" VerticalAlignment="Top"/>
+        <TextBlock HorizontalAlignment="Left" Height="22" Margin="20,445,0,0" TextWrapping="Wrap" Text="Powtórz hasło" VerticalAlignment="Top" Width="343" TextAlignment="Center"/>
+        <PasswordBox x:Name="registerPasswordInputRepetition" HorizontalAlignment="Left" Margin="160,478,0,0" VerticalAlignment="Top"/>
     </Grid>
 </Page>
