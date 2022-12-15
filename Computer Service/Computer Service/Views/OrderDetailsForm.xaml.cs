@@ -50,33 +50,83 @@ namespace Computer_Service.Views
 
         private void SubmitButtonClick(object sender, Windows.UI.Xaml.RoutedEventArgs e)
         {
-            var computer = new Computer()
+            bool allRequiredFieldsFulfilled = true;
+            if (string.IsNullOrEmpty(serviceLocationComboBox.SelectedValue.ToString()))
             {
-                customer_id = dbContext.Customers
-                    .FirstOrDefault(k => k.email == emailInput.Text).customer_id,
-                system_name = systemInput.Text,
-                processor = processorInput.Text,
-                motherboard = motherboardInput.Text,
-                ram = ramInput.Text,
-                graphics_card = graphicsCardInput.Text,
-            };
-            dbContext.Computers.Add(computer);
-            dbContext.SaveChanges();
-
-            var repair = new Repair()
+                LocationIsRequiredNotification.Text = "Lokalizacja jest wymagana!";
+                allRequiredFieldsFulfilled = false;
+            }
+            if (!reportDateInput.Date.HasValue)
             {
-                computer_id = dbContext.Computers.OrderByDescending(c => c.computer_id).FirstOrDefault().computer_id,
-                service_id = dbContext.Services
-                    .FirstOrDefault(s => s.service_location == serviceLocationComboBox.SelectedValue).service_id,
-                repair_type = (string)repairTypeComboBox.SelectedValue,
-                filing_date = (DateTimeOffset)reportDateInput.Date,
-                end_date = (DateTimeOffset)estimatedTimeInput.Date,
+                fillingDateIsRequiredNotification.Text = "Data zgłoszenia jest wymagana!";
+                allRequiredFieldsFulfilled = false;
+            }
+            if (!estimatedTimeInput.Date.HasValue)
+            {
+                endDateIsRequiredNotification.Text = "Data zakończenia naprawy jest wymagana!";
+                allRequiredFieldsFulfilled = false;
+            }
+            if (string.IsNullOrEmpty(repairTypeComboBox.SelectedValue.ToString()))
+            {
+                repairTypeIsRequiredNotification.Text = "Typ usterki jest wymagany!";
+                allRequiredFieldsFulfilled = false;
+            }
+            if (string.IsNullOrEmpty(processorInput.Text))
+            {
+                processorRequiredNotification.Text = "Model procesora jest wymagany!";
+                allRequiredFieldsFulfilled = false;
+            }
+            if (string.IsNullOrEmpty(motherboardInput.Text))
+            {
+                motherboardIsRequiredNotification.Text = "Model płyty głównej jest wymagany!";
+                allRequiredFieldsFulfilled = false;
+            }
+            if (string.IsNullOrEmpty(ramInput.Text))
+            {
+                ramModelIsRequiredNotification.Text = "Model RAMu jest wymagany!";
+                allRequiredFieldsFulfilled = false;
+            }
 
-            };
-            dbContext.Repairs.Add(repair);
-            dbContext.SaveChanges();
+            if (allRequiredFieldsFulfilled)
+            {
+                var computer = new Computer()
+                {
+                    customer_id = dbContext.Customers
+                                                    .FirstOrDefault(k => k.email == emailInput.Text).customer_id,
+                    system_name = systemInput.Text,
+                    processor = processorInput.Text,
+                    motherboard = motherboardInput.Text,
+                    ram = ramInput.Text,
+                    graphics_card = graphicsCardInput.Text,
+                };
+                dbContext.Computers.Add(computer);
+                dbContext.SaveChanges();
 
-            Frame.Navigate(typeof(EmployeePanel), dbContext);
+                var repair = new Repair()
+                {
+                    computer_id = dbContext.Computers.OrderByDescending(c => c.computer_id).FirstOrDefault().computer_id,
+                    service_id = dbContext.Services
+                        .FirstOrDefault(s => s.service_location == serviceLocationComboBox.SelectedValue).service_id,
+                    repair_type = (string)repairTypeComboBox.SelectedValue,
+                    filling_date = (DateTimeOffset)reportDateInput.Date,
+                    end_date = (DateTimeOffset)estimatedTimeInput.Date,
+
+                };
+                dbContext.Repairs.Add(repair);
+                dbContext.SaveChanges();
+
+                Frame.Navigate(typeof(EmployeePanel), dbContext);
+            }
+        }
+
+        private void TextBlock_SelectionChanged(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void fillingDateIsRequiredNotification_SelectionChanged(object sender, RoutedEventArgs e)
+        {
+
         }
     }
 }

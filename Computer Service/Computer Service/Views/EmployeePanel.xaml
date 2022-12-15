@@ -9,7 +9,7 @@
     Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
 
     <Grid>
-        <Button x:Name="InputOrderDetails" Content="Wprowdź dane zlecenia" Margin="335,380,0,0" VerticalAlignment="Top" Height="200" Width="390" Click="InputOrderDetailsButtonClick"/>
-        <Button x:Name="CheckOrderDetails" Content="Sprawdź dane zlecenia" Margin="810,380,0,0" VerticalAlignment="Top" Height="200" Width="390" Click="CheckOrderDetailsButtonClick"/>
+        <Button x:Name="InputOrderDetails" Content="Wprowadź dane zlecenia" Margin="335,380,0,0" VerticalAlignment="Top" Height="200" Width="390" Click="InputOrderDetailsButtonClick"/>
+        <Button x:Name="CheckOrderDetails" Content="Sprawadź dane zlecenia" Margin="810,380,0,0" VerticalAlignment="Top" Height="200" Width="390" Click="CheckOrderDetailsButtonClick"/>
     </Grid>
 </Page>

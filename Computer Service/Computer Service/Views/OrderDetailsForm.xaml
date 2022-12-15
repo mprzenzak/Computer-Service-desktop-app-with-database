@@ -34,5 +34,12 @@
         <Button x:Name="submitButton" Content="Dodaj zgłoszenie" Margin="700,910,0,0" VerticalAlignment="Top" Click="SubmitButtonClick"/>
         <TextBlock HorizontalAlignment="Left" Margin="52,46,0,0" TextWrapping="Wrap" Text="Email klienta" VerticalAlignment="Top"/>
         <TextBox x:Name="emailInput" HorizontalAlignment="Left" Margin="50,73,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top"/>
+        <TextBlock x:Name="LocationIsRequiredNotification" HorizontalAlignment="Left" Margin="852,131,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top"/>
+        <TextBlock x:Name="fillingDateIsRequiredNotification" HorizontalAlignment="Left" Margin="852,206,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top"/>
+        <TextBlock x:Name="endDateIsRequiredNotification" HorizontalAlignment="Left" Margin="854,280,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" RenderTransformOrigin="4.857,3.368"/>
+        <TextBlock x:Name="repairTypeIsRequiredNotification" HorizontalAlignment="Left" Margin="849,351,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" RenderTransformOrigin="4.857,3.368"/>
+        <TextBlock x:Name="processorRequiredNotification" HorizontalAlignment="Left" Margin="813,626,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" RenderTransformOrigin="4.857,3.368"/>
+        <TextBlock x:Name="motherboardIsRequiredNotification" HorizontalAlignment="Left" Margin="806,691,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" RenderTransformOrigin="4.857,3.368"/>
+        <TextBlock x:Name="ramModelIsRequiredNotification" HorizontalAlignment="Left" Margin="815,761,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" RenderTransformOrigin="4.857,3.368"/>
     </Grid>
 </Page>

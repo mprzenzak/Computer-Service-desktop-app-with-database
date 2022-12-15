@@ -26,7 +26,7 @@ namespace Computer_Service.Views
         private DataBaseContext dbContext;
         public CustomerPanel()
         {
-            this.InitializeComponent();
+            InitializeComponent();
         }
         protected override void OnNavigatedTo(NavigationEventArgs e)
         {
@@ -45,7 +45,7 @@ namespace Computer_Service.Views
             var repair_type = repair.repair_type;
             var cost = dbContext.PriceList.FirstOrDefault(p => p.repair_type == repair_type).price;
 
-            costValueLabel.Text = cost.ToString();
+            costValueLabel.Text = cost.ToString("0.00") + " zł";
             endDateLabel.Text = end_date.ToString();
         }
     }

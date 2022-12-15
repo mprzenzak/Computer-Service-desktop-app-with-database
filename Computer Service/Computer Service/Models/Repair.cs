@@ -35,7 +35,7 @@ namespace Computer_Service.Models
 
         [Required]
         [Display(Name = "Data zgłoszenia")]
-        public DateTimeOffset filing_date { get; set; }
+        public DateTimeOffset filling_date { get; set; }
 
         [Required]
         [Display(Name = "Przewidywana data zakończenia")]

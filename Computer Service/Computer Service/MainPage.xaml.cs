@@ -10,13 +10,12 @@ using Windows.Security.Isolation;
 using System.Text;
 using System.Text.RegularExpressions;
 using System.Reflection.Metadata.Ecma335;
+using Windows.System;
 
 namespace Computer_Service
 {
     public sealed partial class MainPage : Page
     {
-        private DataBaseContext dbContext = new DataBaseContext();
-
         private static string login;
         private static string password;
         public MainPage()
@@ -29,21 +28,38 @@ namespace Computer_Service
             login = LoginInput.Text;
             password = PasswordInput.Password;
 
-            var correctPassword = dbContext.Credentials.FirstOrDefault(c => c.login == login);
-            if (correctPassword != null && password == correctPassword.password)
+            if(login.Substring(0, 1) == "K")
             {
-                if (login.Substring(0, 1) == "K")
-                {
+                DataBaseContext dbContext = new DataBaseContext("customer");
+                bool passwordIsValid = ValidatePassword(dbContext);
+                if (passwordIsValid) {
                     Frame.Navigate(typeof(CustomerPanel), dbContext);
                 }
-                else
+            } else if(login.Substring(0, 1) == "P")
+            {
+                DataBaseContext dbContext = new DataBaseContext("employee");
+                bool passwordIsValid = ValidatePassword(dbContext);
+                if (passwordIsValid)
                 {
                     Frame.Navigate(typeof(EmployeePanel), dbContext);
                 }
+            } else
+            {
+                IncorrectPasswordLabel.Text = "Niepoprawny login lub hasło!";
+            }
+        }
+
+        private bool ValidatePassword(DataBaseContext dbContext)
+        {
+            var correctPassword = dbContext.Credentials.FirstOrDefault(c => c.login == login);
+            if (correctPassword != null && password == correctPassword.password)
+            {
+                return true;
             }
             else
             {
                 IncorrectPasswordLabel.Text = "Niepoprawny login lub hasło!";
+                return false;
             }
         }
 
@@ -51,11 +67,13 @@ namespace Computer_Service
         {
             if (registerPasswordInput.Password == registerPasswordInputRepetition.Password && ValidatePassword(registerPasswordInputRepetition.Password))
             {
+                DataBaseContext dbContext = new DataBaseContext("customer");
+
                 var newFirstname = registerFirstnameInput.Text;
                 var newLastname = registerLastnameInput.Text;
                 var newEmail = registerEmailInput.Text;
                 var newPhoneNumber = Int32.Parse(registerPhoneNumberInput.Text);
-                var newCustomerId = GenerateUserID('K');
+                var newCustomerId = GenerateUserID('K', dbContext);
                 var newPassword = registerPasswordInputRepetition.Password;
 
                 var newCustomer = new Customer()
@@ -89,7 +107,7 @@ namespace Computer_Service
             return Regex.IsMatch(password, @"^(?=.*[a-zA-Z])(?=.*[0-9])(?=.{8,}).*$");
         }
 
-        private string GenerateUserID(char userType)
+        private string GenerateUserID(char userType, DataBaseContext dbContext)
         {
             string currentLastID = dbContext.Customers.OrderByDescending(c => c.customer_id).FirstOrDefault().customer_id;
             int substringLength = 0;

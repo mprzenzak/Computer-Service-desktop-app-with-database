@@ -12,7 +12,7 @@
         <TextBlock HorizontalAlignment="Left" Margin="704,186,0,0" TextWrapping="Wrap" Text="Podaj numer zlecenia" VerticalAlignment="Top"/>
         <TextBox x:Name="repairIdInput" HorizontalAlignment="Left" Margin="735,223,0,0" TextWrapping="Wrap" VerticalAlignment="Top"/>
         
-        <TextBlock HorizontalAlignment="Left" Margin="324,291,0,0" TextWrapping="Wrap" Text="Koszt usługi:" VerticalAlignment="Top"/>
+        <TextBlock HorizontalAlignment="Left" Margin="285,291,0,0" TextWrapping="Wrap" Text="Koszt usługi:" VerticalAlignment="Top"/>
         <TextBlock x:Name="costValueLabel" HorizontalAlignment="Left" Margin="295,316,0,0" TextWrapping="Wrap" VerticalAlignment="Top"/>
 
         <TextBlock HorizontalAlignment="Left" Margin="1019,291,0,0" TextWrapping="Wrap" Text="Dzień, w którym można odebrać komputer:" VerticalAlignment="Top"/>
