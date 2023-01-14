@@ -39,7 +39,7 @@ namespace Computer_Service.Views
 
         private void CheckOrderDetailsButtonClick(object sender, Windows.UI.Xaml.RoutedEventArgs e)
         {
-            Frame.Navigate(typeof(OrderDetailsForm), dbContext);
+            Frame.Navigate(typeof(CheckOrderForm), dbContext);
         }
     }
 }

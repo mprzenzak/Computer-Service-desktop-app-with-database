@@ -1,6 +1,5 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using System;
-using System.Configuration;
 using System.Text;
 
 namespace Computer_Service.Models

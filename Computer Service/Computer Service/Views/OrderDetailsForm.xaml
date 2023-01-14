@@ -17,7 +17,7 @@
         <TextBlock HorizontalAlignment="Left" Margin="661,246,0,0" TextWrapping="Wrap" Text="Przewidywany czas wykonania zlecenia" VerticalAlignment="Top"/>
         <CalendarDatePicker x:Name="estimatedTimeInput" Margin="715,273,0,0" VerticalAlignment="Top" FirstDayOfWeek="Monday" DateFormat="{}{day.integer}-{month.full}-{year.full}"/>
         <TextBlock HorizontalAlignment="Left" Margin="738,315,0,0" TextWrapping="Wrap" Text="Typ usterki" VerticalAlignment="Top"/>
-        <ComboBox x:Name="repairTypeComboBox" Margin="710,343,0,0" Width="120"/>
+        <ComboBox x:Name="repairTypeComboBox" Margin="710,343,0,0" Width="120" SelectionChanged="repairTypeComboBox_SelectionChanged"/>
         <TextBlock HorizontalAlignment="Left" Margin="697,390,0,0" TextWrapping="Wrap" Text="Koszt wykonania usługi:" VerticalAlignment="Top"/>
         <TextBlock x:Name="costValue" HorizontalAlignment="Left" Margin="735,415,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top"/>
         <TextBlock HorizontalAlignment="Left" Margin="595,461,0,0" TextWrapping="Wrap" Text="Dane komputera" VerticalAlignment="Top" FontSize="48"/>
@@ -32,8 +32,8 @@
         <TextBlock HorizontalAlignment="Left" Margin="713,801,0,0" TextWrapping="Wrap" Text="Karta graficzna" VerticalAlignment="Top"/>
         <TextBox x:Name="graphicsCardInput" HorizontalAlignment="Left" Margin="725,830,0,0" TextWrapping="Wrap" VerticalAlignment="Top"/>
         <Button x:Name="submitButton" Content="Dodaj zgłoszenie" Margin="700,910,0,0" VerticalAlignment="Top" Click="SubmitButtonClick"/>
-        <TextBlock HorizontalAlignment="Left" Margin="52,46,0,0" TextWrapping="Wrap" Text="Email klienta" VerticalAlignment="Top"/>
-        <TextBox x:Name="emailInput" HorizontalAlignment="Left" Margin="50,73,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top"/>
+        <TextBlock HorizontalAlignment="Left" Margin="390,60,0,0" TextWrapping="Wrap" Text="Email klienta" VerticalAlignment="Top"/>
+        <TextBox x:Name="emailInput" HorizontalAlignment="Left" Margin="351,85,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="159"/>
         <TextBlock x:Name="LocationIsRequiredNotification" HorizontalAlignment="Left" Margin="852,131,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top"/>
         <TextBlock x:Name="fillingDateIsRequiredNotification" HorizontalAlignment="Left" Margin="852,206,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top"/>
         <TextBlock x:Name="endDateIsRequiredNotification" HorizontalAlignment="Left" Margin="854,280,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" RenderTransformOrigin="4.857,3.368"/>
@@ -41,5 +41,7 @@
         <TextBlock x:Name="processorRequiredNotification" HorizontalAlignment="Left" Margin="813,626,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" RenderTransformOrigin="4.857,3.368"/>
         <TextBlock x:Name="motherboardIsRequiredNotification" HorizontalAlignment="Left" Margin="806,691,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" RenderTransformOrigin="4.857,3.368"/>
         <TextBlock x:Name="ramModelIsRequiredNotification" HorizontalAlignment="Left" Margin="815,761,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" RenderTransformOrigin="4.857,3.368"/>
+
+        <Button x:Name="comeBackButton" Content="Powrót" Margin="45,30,0,0" VerticalAlignment="Top" Click="comeBackButtonClick"/>
     </Grid>
 </Page>

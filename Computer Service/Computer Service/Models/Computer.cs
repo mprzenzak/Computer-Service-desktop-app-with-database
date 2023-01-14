@@ -1,13 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
+﻿using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
-using System.Linq;
-using System.ServiceModel;
-using System.Text;
-using System.Threading.Tasks;
-using System.Xml.Linq;
 
 namespace Computer_Service.Models
 {
@@ -24,7 +17,6 @@ namespace Computer_Service.Models
         [Display(Name = "ID klienta")]
         public Customer Customer { get; set; }
 
-        [Required]
         [MaxLength(15)]
         [Display(Name = "System")]
         public string system_name { get; set; }
@@ -44,7 +36,6 @@ namespace Computer_Service.Models
         [Display(Name = "RAM")]
         public string ram { get; set; }
 
-        [Required]
         [MaxLength(15)]
         [Display(Name = "Karta graficzna")]
         public string graphics_card { get; set; }

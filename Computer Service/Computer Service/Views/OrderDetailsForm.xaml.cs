@@ -43,9 +43,6 @@ namespace Computer_Service.Views
             {
                 repairTypeComboBox.Items.Add(repairType.repair_type);
             }
-            string selectedRepairType = repairTypeComboBox.SelectedItem as string;
-            // TODO null on startup
-            // costValue.Text = dbContext.PriceList.FirstOrDefault(c => c.repair_type == selectedRepairType).price.ToString();
         }
 
         private void SubmitButtonClick(object sender, Windows.UI.Xaml.RoutedEventArgs e)
@@ -119,14 +116,15 @@ namespace Computer_Service.Views
             }
         }
 
-        private void TextBlock_SelectionChanged(object sender, RoutedEventArgs e)
+        private void comeBackButtonClick(object sender, RoutedEventArgs e)
         {
-
+            Frame.Navigate(typeof(EmployeePanel), dbContext);
         }
 
-        private void fillingDateIsRequiredNotification_SelectionChanged(object sender, RoutedEventArgs e)
+        private void repairTypeComboBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-
+            string selectedRepairType = repairTypeComboBox.SelectedItem as string;
+            costValue.Text = dbContext.PriceList.FirstOrDefault(c => c.repair_type == selectedRepairType).price.ToString("0.00") + " zł";
         }
     }
 }
