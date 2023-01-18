@@ -142,14 +142,8 @@
     <Compile Include="Views\CheckOrderForm.xaml.cs">
       <DependentUpon>CheckOrderForm.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Views\ComputersPage.xaml.cs">
-      <DependentUpon>ComputersPage.xaml</DependentUpon>
-    </Compile>
     <Compile Include="Views\CustomerPanel.xaml.cs">
       <DependentUpon>CustomerPanel.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="Views\CustomersPage.xaml.cs">
-      <DependentUpon>CustomersPage.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\EmployeePanel.xaml.cs">
       <DependentUpon>EmployeePanel.xaml</DependentUpon>
@@ -186,15 +180,7 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Views\ComputersPage.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
     <Page Include="Views\CustomerPanel.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="Views\CustomersPage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

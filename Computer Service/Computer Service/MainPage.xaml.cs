@@ -28,24 +28,34 @@ namespace Computer_Service
             login = LoginInput.Text;
             password = PasswordInput.Password;
 
-            if(login.Substring(0, 1) == "K")
+            if (login != "")
             {
-                DataBaseContext dbContext = new DataBaseContext("customer");
-                bool passwordIsValid = ValidatePassword(dbContext);
-                if (passwordIsValid) {
-                    Frame.Navigate(typeof(CustomerPanel), dbContext);
-                }
-            } else if(login.Substring(0, 1) == "P")
-            {
-                DataBaseContext dbContext = new DataBaseContext("employee");
-                bool passwordIsValid = ValidatePassword(dbContext);
-                if (passwordIsValid)
+                if (login.Substring(0, 1) == "K")
                 {
-                    Frame.Navigate(typeof(EmployeePanel), dbContext);
+                    DataBaseContext dbContext = new DataBaseContext("customer");
+                    bool passwordIsValid = ValidatePassword(dbContext);
+                    if (passwordIsValid)
+                    {
+                        Frame.Navigate(typeof(CustomerPanel), dbContext);
+                    }
                 }
-            } else
+                else if (login.Substring(0, 1) == "P")
+                {
+                    DataBaseContext dbContext = new DataBaseContext("employee");
+                    bool passwordIsValid = ValidatePassword(dbContext);
+                    if (passwordIsValid)
+                    {
+                        Frame.Navigate(typeof(EmployeePanel), dbContext);
+                    }
+                }
+                else
+                {
+                    IncorrectPasswordLabel.Text = "Niepoprawny login lub hasło!";
+                }
+            }
+            else
             {
-                IncorrectPasswordLabel.Text = "Niepoprawny login lub hasło!";
+                IncorrectPasswordLabel.Text = "Podaj login!";
             }
         }
 
@@ -94,7 +104,7 @@ namespace Computer_Service
                 dbContext.Credentials.Add(newCustomerCredentials);
                 dbContext.SaveChanges();
 
-                userAddedInfoLabel.Text = "Konto zostało utworzone";
+                userAddedInfoLabel.Text = "Konto zostało utworzone. Twój numer klienta to: " + newCustomerId;
             }
             else
             {

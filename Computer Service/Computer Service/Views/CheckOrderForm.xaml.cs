@@ -30,6 +30,7 @@ namespace Computer_Service.Views
         protected override void OnNavigatedTo(NavigationEventArgs e)
         {
             dbContext = (DataBaseContext)e.Parameter;
+            system.Visibility = Visibility.Collapsed;
             repairType.Visibility = Visibility.Collapsed;
             cost.Visibility = Visibility.Collapsed;
             startDate.Visibility = Visibility.Collapsed;
@@ -44,52 +45,80 @@ namespace Computer_Service.Views
 
         private Tuple<Repair, Computer> FetchRepairData(int repairId, string customerId)
         {
-            Repair repair = new Repair();
-            var computers = dbContext.Computers;
+            var computers = new List<Computer>();
+
+            computers = dbContext.Computers.ToList();
+            
             foreach (Computer computer in computers)
             {
                 if (computer.customer_id == customerId)
                 {
-                    Repair selectedRepair = dbContext.Repairs.FirstOrDefault(r => r.repair_id == repairId && r.Computer == computer);
+                    Repair selectedRepair = dbContext.Repairs.FirstOrDefault(r => r.repair_id == repairId);// && r.Computer == computer);
                     return Tuple.Create(selectedRepair, computer);
                 }
             }
+            wrongRepairIdAlert.Text = "Taka naprawa nie istnieje.";
             return null;
         }
 
         private void submitButton_Click(object sender, RoutedEventArgs e)
         {
-            var repairId = Int16.Parse(repairIdInput.Text);
+            int repairId;
+            bool repairIdIsNumber = int.TryParse(repairIdInput.Text, out repairId);
+            if (!repairIdIsNumber)
+            {
+                wrongRepairIdAlert.Text = "Numer zlecenia składa się z cyfr.";
+            }
             var customerId = customerIdInput.Text;
             (Repair repair, Computer computer) = FetchRepairData(repairId, customerId);
 
-            // repair values to display
-            var repair_type = repair.repair_type;
-            costValue.Text = dbContext.PriceList.FirstOrDefault(p => p.repair_type == repair_type).price.ToString("0.00") + " zł";
-            repairTypeValue.Text = repair_type;
-            startDateValue.Text = repair.filling_date.ToString();
-            endDateValue.Text = repair.end_date.ToString();
+            if (repair != null)
+            {
+                system.Visibility = Visibility.Visible;
+                repairType.Visibility = Visibility.Visible;
+                cost.Visibility = Visibility.Visible;
+                startDate.Visibility = Visibility.Visible;
+                endDate.Visibility = Visibility.Visible;
 
-            //computer values to display
-            if (computer.system_name != null)
-            {
-                systemValue.Text = computer.system_name;
+                systemValue.Visibility = Visibility.Visible;
+                processor.Visibility = Visibility.Visible;
+                motherboard.Visibility = Visibility.Visible;
+                graphicsCard.Visibility = Visibility.Visible;
+                ram.Visibility = Visibility.Visible;
+
+                // repair values to display
+                var repair_type = repair.repair_type;
+                costValue.Text = dbContext.PriceList.FirstOrDefault(p => p.repair_type == repair_type).price.ToString("0.00") + " zł";
+                repairTypeValue.Text = repair_type;
+                startDateValue.Text = repair.filling_date.Date.Day.ToString() + "." + repair.filling_date.Date.Month.ToString() + "." + repair.filling_date.Date.Year.ToString();
+                endDateValue.Text = repair.end_date.Date.Day.ToString() + "." + repair.end_date.Date.Month.ToString() + "." + repair.end_date.Date.Year.ToString();
+
+                //computer values to display
+                if (computer.system_name != null)
+                {
+                    systemValue.Text = computer.system_name;
+                }
+                else
+                {
+                    systemValue.Text = "Brak systemu";
+                }
+                processorValue.Text = computer.processor;
+                motherboardValue.Text = computer.motherboard;
+                if (computer.graphics_card != null)
+                {
+                    graphicsCardValue.Text = computer.graphics_card;
+                }
+                else
+                {
+                    graphicsCardValue.Text = "Brak karty graficznej";
+                }
+                ramValue.Text = computer.ram;
             }
-            else
-            {
-                systemValue.Text = "Brak systemu";
-            }
-            processorValue.Text = computer.processor;
-            motherboardValue.Text = computer.motherboard;
-            if (computer.graphics_card != null)
-            {
-                graphicsCardValue.Text = computer.graphics_card;
-            }
-            else
-            {
-                graphicsCardValue.Text = "Brak karty graficznej";
-            }
-            ramValue.Text = computer.ram;
+        }
+
+        private void comeBackButtonClick(object sender, RoutedEventArgs e)
+        {
+            Frame.Navigate(typeof(EmployeePanel), dbContext);
         }
     }
 }

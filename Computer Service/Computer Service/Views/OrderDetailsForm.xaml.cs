@@ -1,20 +1,10 @@
 ﻿using Computer_Service.Models;
 using System;
-using System.Collections.Generic;
-using System.IO;
 using System.Linq;
-using System.Runtime.InteropServices.WindowsRuntime;
-using Windows.Foundation;
-using Windows.Foundation.Collections;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
-using Windows.UI.Xaml.Controls.Primitives;
-using Windows.UI.Xaml.Data;
-using Windows.UI.Xaml.Input;
-using Windows.UI.Xaml.Media;
 using Windows.UI.Xaml.Navigation;
 
-// The Blank Page item template is documented at https://go.microsoft.com/fwlink/?LinkId=234238
 
 namespace Computer_Service.Views
 {
@@ -45,9 +35,11 @@ namespace Computer_Service.Views
             }
         }
 
-        private void SubmitButtonClick(object sender, Windows.UI.Xaml.RoutedEventArgs e)
+        private async void SubmitButtonClick(object sender, Windows.UI.Xaml.RoutedEventArgs e)
         {
             bool allRequiredFieldsFulfilled = true;
+            Customer customer = dbContext.Customers.FirstOrDefault(k => k.email == emailInput.Text);
+
             if (string.IsNullOrEmpty(serviceLocationComboBox.SelectedValue.ToString()))
             {
                 LocationIsRequiredNotification.Text = "Lokalizacja jest wymagana!";
@@ -83,13 +75,25 @@ namespace Computer_Service.Views
                 ramModelIsRequiredNotification.Text = "Model RAMu jest wymagany!";
                 allRequiredFieldsFulfilled = false;
             }
+            if (customer == null)
+            {
+                customerDoesNotExistWarning.Text = "Taki klient nie istnieje...";
+                allRequiredFieldsFulfilled = false;
+            }
+            if (estimatedTimeInput.Date - reportDateInput.Date < new TimeSpan(72, 0, 0))
+            {
+                endDateIsRequiredNotification.Text = "Naprawa nie może trwać krócej niż 3 dni!";
+                allRequiredFieldsFulfilled = false;
+            }
+
+            var a = estimatedTimeInput.Date - reportDateInput.Date;
+
 
             if (allRequiredFieldsFulfilled)
             {
                 var computer = new Computer()
                 {
-                    customer_id = dbContext.Customers
-                                                    .FirstOrDefault(k => k.email == emailInput.Text).customer_id,
+                    customer_id = customer.customer_id,
                     system_name = systemInput.Text,
                     processor = processorInput.Text,
                     motherboard = motherboardInput.Text,
@@ -103,7 +107,7 @@ namespace Computer_Service.Views
                 {
                     computer_id = dbContext.Computers.OrderByDescending(c => c.computer_id).FirstOrDefault().computer_id,
                     service_id = dbContext.Services
-                        .FirstOrDefault(s => s.service_location == serviceLocationComboBox.SelectedValue).service_id,
+                        .FirstOrDefault(s => s.service_location == serviceLocationComboBox.SelectedValue.ToString()).service_id,
                     repair_type = (string)repairTypeComboBox.SelectedValue,
                     filling_date = (DateTimeOffset)reportDateInput.Date,
                     end_date = (DateTimeOffset)estimatedTimeInput.Date,
@@ -112,6 +116,16 @@ namespace Computer_Service.Views
                 dbContext.Repairs.Add(repair);
                 dbContext.SaveChanges();
 
+                var newRepairID = dbContext.Repairs.ToList().IndexOf(repair) + 1;
+
+                ContentDialog noWifiDialog = new ContentDialog()
+                {
+                    Title = "Podaj klientowi numer zgłoszenia",
+                    Content = "Numer zgłoszenia to: " + newRepairID,
+                    CloseButtonText = "OK"
+                };
+
+                await noWifiDialog.ShowAsync();
                 Frame.Navigate(typeof(EmployeePanel), dbContext);
             }
         }
