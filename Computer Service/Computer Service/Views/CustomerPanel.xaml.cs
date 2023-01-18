@@ -1,5 +1,6 @@
 ﻿using Computer_Service.Models;
 using System.Linq;
+using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Navigation;
 
@@ -39,6 +40,11 @@ namespace Computer_Service.Views
 
             costValueLabel.Text = cost.ToString("0.00") + " zł";
             endDateLabel.Text = end_date;
+        }
+
+        private void LogOutButtonClick(object sender, RoutedEventArgs e)
+        {
+            Frame.Navigate(typeof(MainPage), dbContext);
         }
     }
 }
