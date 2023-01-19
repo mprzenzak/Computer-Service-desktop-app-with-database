@@ -15,7 +15,7 @@ namespace Computer_Service.Models
 
         [ForeignKey("customer_id")]
         [Display(Name = "ID klienta")]
-        public Customer Customer { get; set; }
+        public Customer customer { get; set; }
 
         [MaxLength(15)]
         [Display(Name = "System")]

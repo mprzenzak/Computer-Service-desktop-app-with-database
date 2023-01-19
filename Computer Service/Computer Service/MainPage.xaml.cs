@@ -71,7 +71,7 @@ namespace Computer_Service
         {
             // clear all alerts
             userAddedInfoLabel.Text = string.Empty;
-            noEmailAlert.Text = string.Empty;   
+            noEmailAlert.Text = string.Empty;
             noNameAlert.Text = string.Empty;
             noLastnameAlert.Text = string.Empty;
             noPasswordAlert.Text = string.Empty;
@@ -120,39 +120,42 @@ namespace Computer_Service
                 }
             }
 
-            if (allRequiredFieldsFulfilled && registerPasswordInput.Password == registerPasswordInputRepetition.Password && ValidatePassword(registerPasswordInputRepetition.Password))
+            if (allRequiredFieldsFulfilled)
             {
-                DataBaseContext dbContext = new DataBaseContext("customer");
-
-                var newFirstname = registerFirstnameInput.Text;
-                var newLastname = registerLastnameInput.Text;
-                var newEmail = registerEmailInput.Text;
-                var newCustomerId = GenerateUserID('K', dbContext);
-                var newPassword = registerPasswordInputRepetition.Password;
-
-                var newCustomer = new Customer()
+                if (registerPasswordInput.Password == registerPasswordInputRepetition.Password && ValidatePassword(registerPasswordInputRepetition.Password))
                 {
-                    customer_id = newCustomerId,
-                    firstname = newFirstname,
-                    lastname = newLastname,
-                    email = newEmail,
-                    phone = newPhoneNumber,
-                };
-                dbContext.Customers.Add(newCustomer);
+                    DataBaseContext dbContext = new DataBaseContext("customer");
 
-                var newCustomerCredentials = new Credentials()
+                    var newFirstname = registerFirstnameInput.Text;
+                    var newLastname = registerLastnameInput.Text;
+                    var newEmail = registerEmailInput.Text;
+                    var newCustomerId = GenerateUserID('K', dbContext);
+                    var newPassword = registerPasswordInputRepetition.Password;
+
+                    var newCustomer = new Customer()
+                    {
+                        customer_id = newCustomerId,
+                        firstname = newFirstname,
+                        lastname = newLastname,
+                        email = newEmail,
+                        phone = newPhoneNumber,
+                    };
+                    dbContext.Customers.Add(newCustomer);
+
+                    var newCustomerCredentials = new Credentials()
+                    {
+                        login = newCustomerId,
+                        password = newPassword,
+                    };
+                    dbContext.Credentials.Add(newCustomerCredentials);
+                    dbContext.SaveChanges();
+
+                    userAddedInfoLabel.Text = "Konto zostało utworzone. Twój numer klienta to: " + newCustomerId;
+                }
+                else
                 {
-                    login = newCustomerId,
-                    password = newPassword,
-                };
-                dbContext.Credentials.Add(newCustomerCredentials);
-                dbContext.SaveChanges();
-
-                userAddedInfoLabel.Text = "Konto zostało utworzone. Twój numer klienta to: " + newCustomerId;
-            }
-            else
-            {
-                userAddedInfoLabel.Text = "Podane hasła nie są jednakowe lub nie spełniają określonych wymogów";
+                    userAddedInfoLabel.Text = "Podane hasła nie są jednakowe lub nie spełniają określonych wymogów";
+                }
             }
         }
 

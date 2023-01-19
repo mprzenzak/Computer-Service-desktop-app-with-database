@@ -1,18 +1,8 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.IO;
-using System.Linq;
-using System.Runtime.InteropServices.WindowsRuntime;
 using Windows.ApplicationModel;
 using Windows.ApplicationModel.Activation;
-using Windows.Foundation;
-using Windows.Foundation.Collections;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
-using Windows.UI.Xaml.Controls.Primitives;
-using Windows.UI.Xaml.Data;
-using Windows.UI.Xaml.Input;
-using Windows.UI.Xaml.Media;
 using Windows.UI.Xaml.Navigation;
 
 namespace Computer_Service
@@ -22,22 +12,6 @@ namespace Computer_Service
     /// </summary>
     sealed partial class App : Application
     {
-        // Connection string for using Windows Authentication.
-        // private string connectionString = "Server=HP\\MPRZENZAKSQL; Database=MoviesDB; Trusted_Connection=True";
-        private string connectionString = "Data Source=HP\\MPRZENZAKSQL;Database=Computer_Service_Project;Integrated Security=SSPI";
-        //    <add name="Db" connectionString="Server=tcp:YOUR_SERVER.database.windows.net,1433;Database=ConnectedCar;User ID=YOUR_USERNAME;Password=YOUR_PASSWORD;Encrypt=True;TrustServerCertificate=False;Connection Timeout=30;"/>
-
-        // TODO 
-        // This is an example connection string for using SQL Server Authentication.
-        //private string connectionString =
-        //    @"Data Source=HP\\MPRZENZAKSQL\YourInstanceName;Initial Catalog=Computer_Service_Project; User Id=sa; Password=XXXXX";
-
-        public string ConnectionString { get => connectionString; set => connectionString = value; }
-
-        /// <summary>
-        /// Initializes the singleton application object.  This is the first line of authored code
-        /// executed, and as such is the logical equivalent of main() or WinMain().
-        /// </summary>
         public App()
         {
             this.InitializeComponent();

@@ -22,9 +22,9 @@
         <TextBlock x:Name="processorValue" HorizontalAlignment="Left" Margin="865,436,0,0" TextWrapping="Wrap" VerticalAlignment="Top" RenderTransformOrigin="-0.345,0" Text="" Width="97"/>
         <TextBlock x:Name="motherboard" HorizontalAlignment="Left" Margin="852,461,0,0" TextWrapping="Wrap" Text="Płyta główna:" VerticalAlignment="Top"/>
         <TextBlock x:Name="motherboardValue" HorizontalAlignment="Left" Margin="870,486,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="88"/>
-        <TextBlock x:Name="graphicsCardValue" HorizontalAlignment="Left" Margin="870,631,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="115"/>
+        <TextBlock x:Name="graphicsCardValue" HorizontalAlignment="Left" Margin="855,631,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="115"/>
         <TextBlock x:Name="graphicsCard" HorizontalAlignment="Left" Margin="843,601,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Text="Karta graficzna:"/>
-        <TextBlock x:Name="ramValue" HorizontalAlignment="Left" Margin="875,551,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="120"/>
+        <TextBlock x:Name="ramValue" HorizontalAlignment="Left" Margin="860,551,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="120"/>
         <TextBlock x:Name="ram" HorizontalAlignment="Left" Margin="870,526,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Text="RAM"/>
 
         <TextBlock HorizontalAlignment="Left" Margin="550,321,0,0" TextWrapping="Wrap" Text="Dane naprawy:" VerticalAlignment="Top"/>

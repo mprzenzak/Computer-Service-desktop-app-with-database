@@ -136,9 +136,6 @@
     <Compile Include="Models\Repair.cs" />
     <Compile Include="Models\Service.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="ViewModels\ComputersPageViewModel.cs" />
-    <Compile Include="ViewModels\CustomersPageViewModel.cs" />
-    <Compile Include="ViewModels\CustomerViewModel.cs" />
     <Compile Include="Views\CheckOrderForm.xaml.cs">
       <DependentUpon>CheckOrderForm.xaml</DependentUpon>
     </Compile>
