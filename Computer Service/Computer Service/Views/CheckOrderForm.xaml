@@ -17,27 +17,27 @@
 
         <TextBlock x:Name="computerData" HorizontalAlignment="Left" Margin="834,321,0,0" TextWrapping="Wrap" VerticalAlignment="Top" RenderTransformOrigin="-0.345,0" Text="Dane komputera:"/>
         <TextBlock x:Name="system" HorizontalAlignment="Left" Margin="868,350,0,0" TextWrapping="Wrap" VerticalAlignment="Top" RenderTransformOrigin="-0.345,0" Text="System:"/>
-        <TextBlock x:Name="systemValue" HorizontalAlignment="Left" Margin="848,380,0,0" TextWrapping="Wrap" VerticalAlignment="Top" RenderTransformOrigin="-0.345,0" Text="" Width="97"/>
+        <TextBlock x:Name="systemValue" HorizontalAlignment="Left" Margin="870,381,0,0" TextWrapping="Wrap" VerticalAlignment="Top" RenderTransformOrigin="-0.345,0" Text="" Width="97"/>
         <TextBlock x:Name="processor" HorizontalAlignment="Left" Margin="863,406,0,0" TextWrapping="Wrap" VerticalAlignment="Top" RenderTransformOrigin="-0.345,0" Text="Procesor:"/>
-        <TextBlock x:Name="processorValue" HorizontalAlignment="Left" Margin="840,435,0,0" TextWrapping="Wrap" VerticalAlignment="Top" RenderTransformOrigin="-0.345,0" Text="" Width="97"/>
+        <TextBlock x:Name="processorValue" HorizontalAlignment="Left" Margin="865,436,0,0" TextWrapping="Wrap" VerticalAlignment="Top" RenderTransformOrigin="-0.345,0" Text="" Width="97"/>
         <TextBlock x:Name="motherboard" HorizontalAlignment="Left" Margin="852,461,0,0" TextWrapping="Wrap" Text="Płyta główna:" VerticalAlignment="Top"/>
-        <TextBlock x:Name="motherboardValue" HorizontalAlignment="Left" Margin="845,486,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="88"/>
-        <TextBlock x:Name="graphicsCardValue" HorizontalAlignment="Left" Margin="825,631,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="115"/>
+        <TextBlock x:Name="motherboardValue" HorizontalAlignment="Left" Margin="870,486,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="88"/>
+        <TextBlock x:Name="graphicsCardValue" HorizontalAlignment="Left" Margin="870,631,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="115"/>
         <TextBlock x:Name="graphicsCard" HorizontalAlignment="Left" Margin="843,601,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Text="Karta graficzna:"/>
-        <TextBlock x:Name="ramValue" HorizontalAlignment="Left" Margin="825,555,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="120"/>
+        <TextBlock x:Name="ramValue" HorizontalAlignment="Left" Margin="875,551,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="120"/>
         <TextBlock x:Name="ram" HorizontalAlignment="Left" Margin="870,526,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Text="RAM"/>
 
         <TextBlock HorizontalAlignment="Left" Margin="550,321,0,0" TextWrapping="Wrap" Text="Dane naprawy:" VerticalAlignment="Top"/>
         <TextBlock x:Name="cost" HorizontalAlignment="Left" Margin="551,414,0,0" TextWrapping="Wrap" Text="Koszt naprawy:" VerticalAlignment="Top"/>
-        <TextBlock x:Name="costValue" HorizontalAlignment="Left" Margin="551,441,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="92"/>
+        <TextBlock x:Name="costValue" HorizontalAlignment="Left" Margin="565,441,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="92"/>
         <TextBlock x:Name="startDate" HorizontalAlignment="Left" Height="20" Margin="515,456,0,0" TextWrapping="Wrap" Text="Czas rozpoczęcia naprawy" VerticalAlignment="Top" Width="182"/>
-        <TextBlock x:Name="startDateValue" HorizontalAlignment="Left" Height="20" Margin="498,0,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Center" Width="182"/>
+        <TextBlock x:Name="startDateValue" HorizontalAlignment="Left" Height="20" Margin="565,0,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Center" Width="115"/>
         <TextBlock x:Name="endDate" HorizontalAlignment="Left" Margin="515,511,0,0" TextWrapping="Wrap" Text="Czas zakończenia naprawy" VerticalAlignment="Top"/>
-        <TextBlock x:Name="endDateValue" HorizontalAlignment="Left" Margin="505,541,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="168"/>
+        <TextBlock x:Name="endDateValue" HorizontalAlignment="Left" Margin="570,541,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="93"/>
         <TextBlock x:Name="repairType" HorizontalAlignment="Left" Margin="563,351,0,0" TextWrapping="Wrap" Text="Typ usterki" VerticalAlignment="Top"/>
-        <TextBlock x:Name="repairTypeValue" HorizontalAlignment="Left" Margin="540,380,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="120"/>
+        <TextBlock x:Name="repairTypeValue" HorizontalAlignment="Left" Margin="565,381,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="120"/>
         <TextBlock x:Name="wrongRepairIdAlert" HorizontalAlignment="Left" Margin="830,131,0,0" TextWrapping="Wrap" VerticalAlignment="Top" RenderTransformOrigin="-0.776,2.895" Width="298" Foreground="Red"/>
-    
+
         <Button x:Name="comeBackButton" Content="Powrót" Margin="45,30,0,0" VerticalAlignment="Top" Click="comeBackButtonClick"/>
-       </Grid>
+    </Grid>
 </Page>

@@ -53,7 +53,7 @@ namespace Computer_Service.Views
             {
                 if (computer.customer_id == customerId)
                 {
-                    Repair selectedRepair = dbContext.Repairs.FirstOrDefault(r => r.repair_id == repairId);// && r.Computer == computer);
+                    Repair selectedRepair = dbContext.Repairs.FirstOrDefault(r => r.repair_id == repairId && r.Computer == computer);
                     return Tuple.Create(selectedRepair, computer);
                 }
             }

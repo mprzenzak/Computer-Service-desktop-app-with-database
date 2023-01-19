@@ -85,10 +85,6 @@ namespace Computer_Service.Views
                 endDateIsRequiredNotification.Text = "Naprawa nie może trwać krócej niż 3 dni!";
                 allRequiredFieldsFulfilled = false;
             }
-
-            var a = estimatedTimeInput.Date - reportDateInput.Date;
-
-
             if (allRequiredFieldsFulfilled)
             {
                 var computer = new Computer()
