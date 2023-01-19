@@ -15,14 +15,14 @@ namespace Computer_Service.Models
 
         [ForeignKey("computer_id")]
         [Display(Name = "Komputer")]
-        public Computer Computer { get; set; }
+        public Computer computer { get; set; }
 
         [Required]
         public string service_id { get; set; }
 
         [ForeignKey("service_id")]
         [Display(Name = "ID serwisu")]
-        public Service Service { get; set; }
+        public Service service { get; set; }
 
         [ForeignKey("repair_type")]
         [Display(Name = "Typ usterki")]
