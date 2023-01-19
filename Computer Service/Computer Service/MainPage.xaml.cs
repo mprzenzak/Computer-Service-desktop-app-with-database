@@ -164,7 +164,7 @@ namespace Computer_Service
             return Regex.IsMatch(password, @"^(?=.*[a-zA-Z])(?=.*[0-9])(?=.{8,}).*$");
         }
 
-        bool ValidateEmail(string email)
+        private bool ValidateEmail(string email)
         {
             var trimmedEmail = email.Trim();
 
