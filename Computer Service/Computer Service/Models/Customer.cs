@@ -1,5 +1,4 @@
-﻿using System.ComponentModel;
-using System.ComponentModel.DataAnnotations;
+﻿using System.ComponentModel.DataAnnotations;
 
 namespace Computer_Service.Models
 {
@@ -27,7 +26,5 @@ namespace Computer_Service.Models
         [MaxLength(20)]
         [Display(Name = "Email")]
         public string email { get; set; }
-
-        public event PropertyChangedEventHandler PropertyChanged;
     }
 }
