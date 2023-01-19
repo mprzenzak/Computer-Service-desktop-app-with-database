@@ -52,7 +52,7 @@ namespace Computer_Service.Views
             return null;
         }
 
-        private void submitButton_Click()
+        private void submitButton_Click(object sender, RoutedEventArgs e)
         {
             int repairId;
             bool repairIdIsNumber = int.TryParse(repairIdInput.Text, out repairId);
@@ -107,7 +107,7 @@ namespace Computer_Service.Views
             }
         }
 
-        private void comeBackButtonClick()
+        private void comeBackButtonClick(object sender, RoutedEventArgs e)
         {
             Frame.Navigate(typeof(EmployeePanel), dbContext);
         }
