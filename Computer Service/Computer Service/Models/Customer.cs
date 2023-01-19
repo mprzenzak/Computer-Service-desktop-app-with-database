@@ -19,7 +19,6 @@ namespace Computer_Service.Models
         [Display(Name = "Nazwisko")]
         public string lastname { get; set; }
 
-        [Required]
         [MaxLength(9)]
         [Display(Name = "Telefon kontaktowy")]
         public int phone { get; set; }

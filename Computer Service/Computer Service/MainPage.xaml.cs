@@ -1,16 +1,10 @@
 ﻿using System;
-using System.Collections.ObjectModel;
-using System.Data.SqlClient;
-using System.Diagnostics;
 using System.Linq;
 using Windows.UI.Xaml.Controls;
 using Computer_Service.Models;
 using Computer_Service.Views;
-using Windows.Security.Isolation;
 using System.Text;
 using System.Text.RegularExpressions;
-using System.Reflection.Metadata.Ecma335;
-using Windows.System;
 
 namespace Computer_Service
 {
@@ -75,14 +69,64 @@ namespace Computer_Service
 
         private void RegisterButtonClick(object sender, Windows.UI.Xaml.RoutedEventArgs e)
         {
-            if (registerPasswordInput.Password == registerPasswordInputRepetition.Password && ValidatePassword(registerPasswordInputRepetition.Password))
+            // clear all alerts
+            userAddedInfoLabel.Text = string.Empty;
+            noEmailAlert.Text = string.Empty;   
+            noNameAlert.Text = string.Empty;
+            noLastnameAlert.Text = string.Empty;
+            noPasswordAlert.Text = string.Empty;
+            noPhoneNumberAlert.Text = string.Empty;
+            noEmailAlert.Text = string.Empty;
+
+            bool allRequiredFieldsFulfilled = true;
+            int newPhoneNumber = 0;
+
+            if (string.IsNullOrEmpty(registerFirstnameInput.Text))
+            {
+                noNameAlert.Text = "Podaj imię!";
+                allRequiredFieldsFulfilled = false;
+            }
+            if (string.IsNullOrEmpty(registerLastnameInput.Text))
+            {
+                noLastnameAlert.Text = "Podaj nazwisko!";
+                allRequiredFieldsFulfilled = false;
+            }
+            if (string.IsNullOrEmpty(registerEmailInput.Text))
+            {
+                noEmailAlert.Text = "Podaj email!";
+                allRequiredFieldsFulfilled = false;
+            }
+            else
+            {
+                bool emailIsValid = ValidateEmail(registerEmailInput.Text);
+                if (!emailIsValid)
+                {
+                    noEmailAlert.Text = "Podany email jest niepoprawny!";
+                    allRequiredFieldsFulfilled = false;
+                }
+            }
+            if (string.IsNullOrEmpty(registerPhoneNumberInput.Text))
+            {
+                noPhoneNumberAlert.Text = "Podaj numer telefonu!";
+                allRequiredFieldsFulfilled = false;
+            }
+            else
+            {
+                bool repairIdIsNumber = int.TryParse(registerPhoneNumberInput.Text, out newPhoneNumber);
+                if (!repairIdIsNumber || registerPhoneNumberInput.Text.Length < 9)
+                {
+                    noPhoneNumberAlert.Text = "Numer telefonu musi składać się z 9 cyfr.";
+                    allRequiredFieldsFulfilled = false;
+                }
+            }
+
+            if (allRequiredFieldsFulfilled && registerPasswordInput.Password == registerPasswordInputRepetition.Password && ValidatePassword(registerPasswordInputRepetition.Password))
             {
                 DataBaseContext dbContext = new DataBaseContext("customer");
 
                 var newFirstname = registerFirstnameInput.Text;
                 var newLastname = registerLastnameInput.Text;
                 var newEmail = registerEmailInput.Text;
-                var newPhoneNumber = Int32.Parse(registerPhoneNumberInput.Text);
                 var newCustomerId = GenerateUserID('K', dbContext);
                 var newPassword = registerPasswordInputRepetition.Password;
 
@@ -115,6 +159,25 @@ namespace Computer_Service
         private bool ValidatePassword(string password)
         {
             return Regex.IsMatch(password, @"^(?=.*[a-zA-Z])(?=.*[0-9])(?=.{8,}).*$");
+        }
+
+        bool ValidateEmail(string email)
+        {
+            var trimmedEmail = email.Trim();
+
+            if (trimmedEmail.EndsWith("."))
+            {
+                return false;
+            }
+            try
+            {
+                var addr = new System.Net.Mail.MailAddress(email);
+                return addr.Address == trimmedEmail;
+            }
+            catch
+            {
+                return false;
+            }
         }
 
         private string GenerateUserID(char userType, DataBaseContext dbContext)

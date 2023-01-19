@@ -32,5 +32,10 @@
         <PasswordBox x:Name="registerPasswordInput" HorizontalAlignment="Left" Margin="161,405,0,0" VerticalAlignment="Top"/>
         <TextBlock HorizontalAlignment="Left" Height="22" Margin="20,445,0,0" TextWrapping="Wrap" Text="Powtórz hasło" VerticalAlignment="Top" Width="343" TextAlignment="Center"/>
         <PasswordBox x:Name="registerPasswordInputRepetition" HorizontalAlignment="Left" Margin="160,478,0,0" VerticalAlignment="Top"/>
+        <TextBlock x:Name="noNameAlert" HorizontalAlignment="Left" Margin="250,105,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="370" Foreground="Red"/>
+        <TextBlock x:Name="noLastnameAlert" HorizontalAlignment="Left" Margin="240,181,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="370" Foreground="Red"/>
+        <TextBlock x:Name="noEmailAlert" HorizontalAlignment="Left" Margin="240,250,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="370" Foreground="Red"/>
+        <TextBlock x:Name="noPasswordAlert" HorizontalAlignment="Left" Margin="255,411,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="370" Foreground="Red"/>
+        <TextBlock x:Name="noPhoneNumberAlert" HorizontalAlignment="Left" Margin="245,321,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="370" Foreground="Red"/>
     </Grid>
 </Page>
