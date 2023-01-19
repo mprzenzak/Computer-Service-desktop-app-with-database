@@ -21,12 +21,12 @@ namespace Computer_Service.Views
             dbContext = (DataBaseContext)e.Parameter;
         }
 
-        private void InputOrderDetailsButtonClick(object sender, Windows.UI.Xaml.RoutedEventArgs e)
+        private void InputOrderDetailsButtonClick(object sender, RoutedEventArgs e)
         {
             Frame.Navigate(typeof(OrderDetailsForm), dbContext);
         }
 
-        private void CheckOrderDetailsButtonClick(object sender, Windows.UI.Xaml.RoutedEventArgs e)
+        private void CheckOrderDetailsButtonClick(object sender, RoutedEventArgs e)
         {
             Frame.Navigate(typeof(CheckOrderForm), dbContext);
         }

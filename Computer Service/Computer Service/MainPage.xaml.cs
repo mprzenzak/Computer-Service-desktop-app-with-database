@@ -10,8 +10,8 @@ namespace Computer_Service
 {
     public sealed partial class MainPage : Page
     {
-        private static string login;
-        private static string password;
+        private string login;
+        private string password;
         public MainPage()
         {
             this.InitializeComponent();

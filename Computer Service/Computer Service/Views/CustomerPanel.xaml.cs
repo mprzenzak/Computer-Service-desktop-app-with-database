@@ -21,7 +21,7 @@ namespace Computer_Service.Views
             dbContext = (DataBaseContext)e.Parameter;
         }
 
-        private void SubmitButtonClick(object sender, Windows.UI.Xaml.RoutedEventArgs e)
+        private void SubmitButtonClick(object sender, RoutedEventArgs e)
         {
             int repairId;
             bool repairIdIsNumber = int.TryParse(repairIdInput.Text, out repairId);
