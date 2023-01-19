@@ -1,10 +1,9 @@
-﻿using System.ComponentModel;
-using System.ComponentModel.DataAnnotations;
+﻿using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
 namespace Computer_Service.Models
 {
-    public class Computer : INotifyPropertyChanged
+    public class Computer
     {
         [Key]
         [Display(Name = "ID komputera")]
@@ -39,12 +38,5 @@ namespace Computer_Service.Models
         [MaxLength(15)]
         [Display(Name = "Karta graficzna")]
         public string graphics_card { get; set; }
-
-        public event PropertyChangedEventHandler PropertyChanged;
-        private void NotifyPropertyChanged(string propertyName)
-        {
-            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
-        }
-
     }
 }
